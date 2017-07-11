@@ -36,13 +36,7 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumWords()
 	{
-        Pattern pattern = Pattern.compile(PATTERN_WORD);
-        Matcher matcher = pattern.matcher(this.getText());
-
-        int count = 0;
-        while(matcher.find()) {
-            count++;
-        }
+		int count = countMatchedPattern(PATTERN_WORD);
         return count;
 	}
 
@@ -61,13 +55,7 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSentences()
 	{
-        Pattern pattern = Pattern.compile(PATTERN_END_SENTENCE);
-        Matcher matcher = pattern.matcher(this.getText());
-
-        int count = 0;
-        while(matcher.find()) {
-            count++;
-        }
+		int count = countMatchedPattern(PATTERN_END_SENTENCE);
         return count;
 	}
 
@@ -88,14 +76,23 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-        Pattern pattern = Pattern.compile(PATTERN_SYLLABLE);
-        Matcher matcher = pattern.matcher(this.getText());
+		return countMatchedPattern(PATTERN_SYLLABLE);
+	}
 
-        int count = 0;
-        while(matcher.find()) {
-            count++;
-        }
-        return count;
+	/**
+	 * Count how many time a pattern is matched.
+	 * @param patternStr string patternStr.
+	 * @return an int.
+	 */
+	private int countMatchedPattern(String patternStr) {
+		Pattern pattern = Pattern.compile(patternStr);
+		Matcher matcher = pattern.matcher(this.getText());
+
+		int count = 0;
+		while (matcher.find()) {
+			count++;
+		}
+		return count;
 	}
 
 
