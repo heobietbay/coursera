@@ -1,6 +1,9 @@
 package document;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -76,7 +79,31 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-		return countMatchedPattern(PATTERN_SYLLABLE);
+		String text = this.getText();
+		int count = 0;
+		for( int i = 0 ; i < text.length() ; i++)
+		{
+			char c = text.charAt(i);
+			if(!syllableSet.contains(c))
+			{
+				continue;
+			}
+			if(count != 0 && c == 'e' && i == text.length() -1)
+			{
+				break;
+			}
+			count++;
+			for(int j = i + 1; j < text.length() ; j++)
+			{
+				char nextC = text.charAt(j);
+				if(!syllableSet.contains(nextC))
+				{
+					i = j;
+					break;
+				}
+			}
+		}
+		return count;
 	}
 
 	/**
@@ -106,6 +133,9 @@ public class BasicDocument extends Document
 		 * in the string, respectively.  You can use these examples to help clarify 
 		 * your understanding of how to count syllables, words, and sentences.
 		 */
+		testCase(new BasicDocument("Segue"), 2, 1, 1);
+		testCase(new BasicDocument("Sentence"), 2, 1, 1);
+		testCase(new BasicDocument("Sentences?!"), 3, 1, 1);
 		testCase(new BasicDocument("This is a test.  How many???  "
 		        + "Senteeeeeeeeeences are here... there should be 5!  Right?"),
 				16, 13, 5);
@@ -117,13 +147,16 @@ public class BasicDocument extends Document
 				+ "find 3 sentences, 33 words, and 49 syllables. Not every word will have "
 				+ "the correct amount of syllables (example, for example), "
 				+ "but most of them will."), 49, 33, 3);
-		testCase(new BasicDocument("Segue"), 2, 1, 1);
-		testCase(new BasicDocument("Sentence"), 2, 1, 1);
-		testCase(new BasicDocument("Sentences?!"), 3, 1, 1);
 		testCase(new BasicDocument("Lorem ipsum dolor sit amet, qui ex choro quodsi moderatius, nam dolores explicari forensibus ad."),
 		         32, 15, 1);
 	}
 
+	private static Set<Character> syllableSet =
+			                      new HashSet<Character>(Arrays.asList(new Character('a'),
+			                                                           new Character('e'),
+																	   new Character('i'),
+																	   new Character('o'),
+																	   new Character('u')));
     private static String PATTERN_SYLLABLE = "[aAeEiIoOuU]{1,}";
 	private static String PATTERN_WORD = "[a-zA-Z]{1,}";
 	private static String PATTERN_END_SENTENCE = "(\\w+)$|[!|\\.|\\?]{1,}";
