@@ -78,46 +78,26 @@ public class BasicDocument extends Document
 	@Override
 	public int getNumSyllables()
 	{
-		String text = this.getText();
 		int total = 0;
-        int startWord = 0;
 
-        for(int i = 0 ; i < text.length() ; i++)
-        {
-            String word = null;
-            int end = 0;
-            if(periodSet.contains(text.charAt(i)))
-            {
-                end = i ;
-                if(startWord == end)
-                {
-                    continue;
-                }
-                word = text.substring(startWord,end);
-                total += countSyllable(word);
-                startWord = end + 1;
-            }
-            else if( i == text.length() - 1)
-            {
-                end = i+1;
-                word = text.substring(startWord,end);
-                total += countSyllable(word);
-            }
-        }
+		Pattern pattern = Pattern.compile(PATTERN_WORD);
+		Matcher matcher = pattern.matcher(this.getText());
+
+		while (matcher.find()) {
+			total += countSyllable(matcher.group());
+		}
 
 		return total;
 	}
 
 	private static int countSyllable(String word)
     {
-        boolean containVow = false;
         int count = 0;
         for(int i = 0 ; i < word.length(); i++)
         {
             char ch = word.charAt(i);
             if(syllableSet.contains(ch))
             {
-                containVow = true;
                 for(int j = i + 1; j < word.length() ; j++)
                 {
                 	i = j;
@@ -130,16 +110,16 @@ public class BasicDocument extends Document
                 count++;
             }
         }
-        if(containVow && word.length() > 1)
-        {
-            char secondLastCh = word.charAt(word.length() - 2);
-            char lastCh = word.charAt(word.length() - 1);
-            if(count > 1 && (!syllableSet.contains(secondLastCh) && (lastCh == 'e' || lastCh == 'E')))
-            {
-                count--;
-            }
-        }
-        return count;
+		if(word.length() >  1)
+		{
+			char secondLastCh = word.charAt(word.length() - 2);
+			char lastCh = word.charAt(word.length() - 1);
+			if(count > 1 && (!syllableSet.contains(secondLastCh) && (lastCh == 'e' || lastCh == 'E')))
+			{
+				count--;
+			}
+		}
+		return count;
     }
 
 	/**
