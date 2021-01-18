@@ -45,6 +45,9 @@ public class EfficientDocument extends Document {
      */
 	private void processText()
 	{
+		numWords = 0;
+		numSentences = 0;
+		numSyllables = 0;
 		// Call getTokens on the text to preserve separate strings that are 
 		// either words or sentence-ending punctuation.  Ignore everything
 		// That is not a word or a sentence-ending puctuation.
@@ -54,6 +57,18 @@ public class EfficientDocument extends Document {
 		
 		// TODO: Finish this method.  Remember the countSyllables method from 
 		// Document.  That will come in handy here.  isWord defined above will also help.
+		for (int i = 0 ; i < tokens.size(); i++) {
+			String token = tokens.get(i);
+			boolean isAWord = isWord(token);
+			numWords += isAWord ? 1 : 0;
+			numSyllables += countSyllables(token);
+			if(i == tokens.size() - 1 && isAWord) {
+				numSentences += 1;
+			}
+			else {
+				numSentences += !isAWord ? 1 : 0;
+			}
+		}
 	}
 
 	
@@ -73,7 +88,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSentences() {
 		//TODO: write this method.  Hint: It's simple
-		return 0;
+		return numSentences;
 	}
 
 	
@@ -94,7 +109,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumWords() {
 		//TODO: write this method.  Hint: It's simple
-	    return 0;
+	    return numWords;
 	}
 
 
@@ -116,7 +131,7 @@ public class EfficientDocument extends Document {
 	@Override
 	public int getNumSyllables() {
         //TODO: write this method.  Hint: It's simple
-        return 0;
+        return numSyllables;
 	}
 	
 	// Can be used for testing
