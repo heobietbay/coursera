@@ -124,7 +124,14 @@ public class MyLinkedListTester {
 	public void testAddEnd()
 	{
         // TODO: implement this test
-		
+		MyLinkedList<Integer> testLst = new MyLinkedList<>();
+		testLst.add(1);
+		testLst.add(2);
+
+		Integer atEnd = testLst.get(1);
+		Integer atEndUsingSize = testLst.get(testLst.size() - 1);
+		assertEquals("Test add end: ", atEnd, atEndUsingSize);
+		assertEquals("Test add end: ", 2, atEnd.intValue());
 	}
 
 	
@@ -133,6 +140,12 @@ public class MyLinkedListTester {
 	public void testSize()
 	{
 		// TODO: implement this test
+		MyLinkedList<Integer> testLst = new MyLinkedList<>();
+		testLst.add(1);
+		assertEquals("Test size with one element: ", 1, testLst.size());
+
+		testLst.add(2);
+		assertEquals("Test size with two elements: ", 2, testLst.size());
 	}
 
 	
@@ -145,7 +158,24 @@ public class MyLinkedListTester {
 	public void testAddAtIndex()
 	{
         // TODO: implement this test
-		
+		MyLinkedList<Integer> testLst = new MyLinkedList<>();
+		testLst.add(0);
+		testLst.add(2);
+
+		Integer data = 1;
+		testLst.add(1,data);
+		Integer check = testLst.get(1);
+		assertEquals("Test add at index 1: ", 1, check.intValue());
+
+		data = 3;
+		testLst.add(3,data);
+		check = testLst.get(3);
+		assertEquals("Test add at index 3: ", 3, check.intValue());
+
+		data = 22;
+		testLst.add(2,data);
+		check = testLst.get(2);
+		assertEquals("Test add at index 2, should return 22: ", 22, check.intValue());
 	}
 	
 	/** Test setting an element in the list */
@@ -153,7 +183,18 @@ public class MyLinkedListTester {
 	public void testSet()
 	{
 	    // TODO: implement this test
-	    
+		MyLinkedList<Integer> testLst = new MyLinkedList<>();
+		testLst.add(100);
+		testLst.add(2);
+
+		Integer data = 1;
+		Integer replaced = testLst.set(1, data);
+		assertEquals("Test set at index 1: ", 2, replaced.intValue());
+		assertEquals("Test size not change after set: ", 2, testLst.size());
+
+		replaced = testLst.set(0, 0);
+		assertEquals("Test set at index 0: ", 100, replaced.intValue());
+		assertEquals("Test size not change after set: ", 2, testLst.size());
 	}
 	
 	
