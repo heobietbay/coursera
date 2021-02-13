@@ -73,9 +73,14 @@ public class MyLinkedList<E> extends AbstractList<E> {
 		}
 		else {
 			LLNode<E> tmp = head;
-			while(i < index) {
-				tmp = tmp.next;
-				i++;
+			if(index == size) {
+				tmp = tail.prev;
+			}
+			else {
+				while(i < index) {
+					tmp = tmp.next;
+					i++;
+				}
 			}
 			tmp.next.prev = toInsert;
 			toInsert.next = tmp.next;
@@ -110,8 +115,10 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	{
 		// TODO: Implement this method
 		LLNode<E> toRemove = getNode(index);
-		LLNode<E> prevNode = toRemove.prev;
-		prevNode.next = toRemove.next;
+		LLNode<E> nodeBefore = toRemove.prev;
+		LLNode<E> nodeAfter = toRemove.next;
+		nodeBefore.next = toRemove.next;
+		nodeAfter.prev = nodeBefore;
 		toRemove.prev = null;
 		toRemove.next = null;
 
@@ -131,7 +138,7 @@ public class MyLinkedList<E> extends AbstractList<E> {
 	/**
 	 * Check if the given index (for get, remove operation) is valid, ie: >= 0 and < size
 	 * @param index
-     * @throws IndexOutOfBoundsException
+	 * @throws IndexOutOfBoundsException
 	 */
 	private void checkBoundary(int index) throws IndexOutOfBoundsException {
 		if(index < 0 || index >= size)
