@@ -51,7 +51,7 @@ public class NearbyWords implements SpellingSuggest {
 	public void substitution(String s, List<String> currentList, boolean wordsOnly) {
 		// for each letter in the s and for all possible replacement characters
 		for(int index = 0; index < s.length(); index++){
-			for(int charCode = (int)'a'; charCode <= (int)'z'; charCode++) {
+			for(int charCode = 'a'; charCode <= (int)'z'; charCode++) {
 				// use StringBuffer for an easy interface to permuting the 
 				// letters in the String
 				StringBuffer sb = new StringBuffer(s);

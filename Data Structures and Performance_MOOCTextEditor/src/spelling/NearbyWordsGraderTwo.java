@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.io.PrintWriter;
 
 public class NearbyWordsGraderTwo {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int tests = 0;
         int incorrect = 0;
         String feedback = "";

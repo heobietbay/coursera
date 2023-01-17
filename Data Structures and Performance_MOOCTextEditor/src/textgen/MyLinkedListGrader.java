@@ -50,7 +50,7 @@ public class MyLinkedListGrader {
 			return;
 		}
 		MyLinkedList<Integer> lst = new MyLinkedList<Integer>();
-		int nums[] = {1, 2, 3, 4, 5};
+		int[] nums = {1, 2, 3, 4, 5};
 		
                 feedback += "** Test #1: Adding to end of list...";
 		for (int i : nums) {
@@ -99,7 +99,7 @@ public class MyLinkedListGrader {
 		
 	}
 	
-	public static void main(String args[])
+	public static void main(String[] args)
 	{
 		MyLinkedListGrader grader = new MyLinkedListGrader();
 		grader.doTest();

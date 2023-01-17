@@ -39,7 +39,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 
 	// matches case of user typing for auto complete and ss
 	// turn off if handling caps
-	private boolean matchCase = true;
+	private final boolean matchCase = true;
 
 	// indices which contain word, set by getWordAtIndex
 	private int startIndex;
@@ -49,15 +49,15 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	private List<String> options;
 
 	// popup to display/select entry
-	private ContextMenu entriesPopup;
+	private final ContextMenu entriesPopup;
 
-	private spelling.AutoComplete ac;
-	private spelling.Dictionary dic;
-	private spelling.SpellingSuggest ss;
+	private final spelling.AutoComplete ac;
+	private final spelling.Dictionary dic;
+	private final spelling.SpellingSuggest ss;
 
 	// set up reflection for spelling suggest
-	private static Method mHit;
-	private static Method mGetCharacterIndex;
+	private static final Method mHit;
+	private static final Method mGetCharacterIndex;
 	private static Object styledView;
 
 	static {
@@ -166,7 +166,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 		for (index = text.length() - 1; index >= 0 && !Character.isWhitespace(text.charAt(index)); index--);
 
 		// get prefix and startIndex of word
-		String prefix = text.substring(index + 1, text.length());
+		String prefix = text.substring(index + 1);
 		startIndex = index + 1;
 
 		// get first whitespace forward from caret
@@ -364,7 +364,7 @@ public class AutoSpellingTextArea extends StyledTextArea<Boolean> {
 	public void setSpelling(boolean state) {
 		spellingOn = state;
 
-		if (state == true && getText().length() > 0) {
+		if (state && getText().length() > 0) {
 			this.setStyleSpans(0, checkSpelling());
 		}
 		// change all text to true/correct style

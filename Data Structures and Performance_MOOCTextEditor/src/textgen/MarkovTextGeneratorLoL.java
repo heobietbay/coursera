@@ -17,7 +17,7 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 	private String starter;
 	
 	// The random number generator
-	private Random rnGenerator;
+	private final Random rnGenerator;
 	
 	public MarkovTextGeneratorLoL(Random generator)
 	{
@@ -98,7 +98,7 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 		if(starter == null || starter == "") {
 			return null;
 		}
-	    StringBuilder output = new StringBuilder("");
+	    StringBuilder output = new StringBuilder();
 	    String curWord = starter;
 	    output.append(starter);
 		output.append(" ");
@@ -201,10 +201,10 @@ public class MarkovTextGeneratorLoL implements MarkovTextGenerator {
 class ListNode
 {
     // The word that is linking to the next words
-	private String word;
+	private final String word;
 	
 	// The next words that could follow it
-	private List<String> nextWords;
+	private final List<String> nextWords;
 	
 	ListNode(String word)
 	{

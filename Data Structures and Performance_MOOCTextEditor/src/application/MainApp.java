@@ -39,7 +39,7 @@ public class MainApp extends Application {
 		try {
 			// Load root layout from fxml
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/RootLayout.fxml"));
-			rootLayout = (BorderPane) loader.load();
+			rootLayout = loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             
@@ -64,7 +64,7 @@ public class MainApp extends Application {
             // Load the fxml file and set into the center of the main layout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("view/TextAppLayout.fxml"));
             
-            HBox textProPage = (HBox) loader.load();
+            HBox textProPage = loader.load();
             rootLayout.setCenter(textProPage);
             
             // Connect controller and main app
@@ -105,7 +105,7 @@ public class MainApp extends Application {
     	try {
     		// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/LoadFileLayout.fxml"));
-			VBox page = (VBox) loader.load();
+			VBox page = loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Load File");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -138,7 +138,7 @@ public class MainApp extends Application {
     	try {
     		// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/EditDistanceLayout.fxml"));
-			VBox page = (VBox) loader.load();
+			VBox page = loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Calculate Edit Distance");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
@@ -231,7 +231,7 @@ public class MainApp extends Application {
     	try {
     		// Load the fxml file and create a new stage for the popup
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/MarkovLayout.fxml"));
-			BorderPane page = (BorderPane) loader.load();
+			BorderPane page = loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Markov Text Generator");
 			//dialogStage.initModality(Modality.WINDOW_MODAL);

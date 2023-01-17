@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public abstract class Document {
 
-	private String text;
+	private final String text;
 
 	/** Create a new document from the given text.
 	 * Because this class is abstract, this is used only from subclasses.

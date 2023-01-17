@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class AutoCompleteDictionaryTrie implements  Dictionary, AutoComplete {
 
-    private TrieNode root;
+    private final TrieNode root;
     private int size;
     
 

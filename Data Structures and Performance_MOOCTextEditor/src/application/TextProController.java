@@ -249,22 +249,12 @@ public class TextProController {
 	
 	@FXML
 	private void handleAutoComplete() {
-		if(autocompleteBox.isSelected()) {
-			textBox.setAutoComplete(true);
-		}
-		else {
-			textBox.setAutoComplete(false);
-		}
+		textBox.setAutoComplete(autocompleteBox.isSelected());
 	}
 	
 	@FXML
 	private void handleSpelling() {
-		if(spellingBox.isSelected()) {
-			textBox.setSpelling(true);
-		}
-		else {
-			textBox.setSpelling(false);
-		}
+		textBox.setSpelling(spellingBox.isSelected());
 		
 	}
 	

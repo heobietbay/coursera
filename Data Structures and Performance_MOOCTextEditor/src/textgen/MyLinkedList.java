@@ -178,8 +178,8 @@ class LLNode<E>
 	@Override
 	public String toString() {
 		return "LLNode{" +
-				"prev=" + (prev!=null? true : false) +
-				", next=" + (next!=null? true : false)  +
+				"prev=" + (prev != null) +
+				", next=" + (next != null)  +
 				", data=" + data +
 				'}';
 	}

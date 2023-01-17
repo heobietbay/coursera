@@ -3,7 +3,7 @@ package spelling;
 import java.io.PrintWriter;
 
 public class DictionaryGrader {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         PrintWriter out;
         try {
             out = new PrintWriter("grader_output/module4.part1.out");

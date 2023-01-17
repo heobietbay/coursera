@@ -18,7 +18,7 @@ import java.util.List;
 public class WPTree implements WordPath {
 
 	// this is the root node of the WPTree
-	private WPTreeNode root;
+	private final WPTreeNode root;
 	// used to search for nearby Words
 	private NearbyWords nw; 
 	
@@ -66,9 +66,9 @@ public class WPTree implements WordPath {
 */
 class WPTreeNode {
     
-    private String word;
-    private List<WPTreeNode> children;
-    private WPTreeNode parent;
+    private final String word;
+    private final List<WPTreeNode> children;
+    private final WPTreeNode parent;
     
     /** Construct a node with the word w and the parent p
      *  (pass a null parent to construct the root)  
